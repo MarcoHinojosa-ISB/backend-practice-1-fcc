@@ -23,13 +23,15 @@ app.get("/:date", function (req, res) {
   
   if(moment(req.params.date).isValid()){ 
     unix = new Date(req.params.date).getTime();
+    
     res.send({
       unix: unix,
-      regular: req.params.date
+      regular: req.params.date.replace(/-/g,"/")
     });
   }
-  else if(Number(req.params.date) !== NaN){
+  else if(!isNaN(req.params.date)){
     regular = new Date(Number(req.params.date));
+    
     res.send({
       unix: req.params.date,
       regular: (regular.getMonth()+1) + "/" + regular.getDate() + "/" + regular.getFullYear()
