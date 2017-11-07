@@ -17,7 +17,7 @@ $(function() {
     event.preventDefault();
     let dateVal = $("input").val();
     
-    
+    dateVal = dateVal.replace(/\//g,"-");
     
     $.get('/'+dateVal, function(data){
       
